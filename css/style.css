@@ -1,0 +1,117 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 50px;
+    background-color: #f4f4f4;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1 {
+    color: #3498db;
+    transition: color 0.3s ease;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background-color: #fff;
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    display: flex;
+    align-items: center;
+    transition: box-shadow 0.3s ease, transform 0.3s ease, background-color 0.3s ease, opacity 0.3s ease, color 0.3s ease; /* Menambahkan transisi warna teks */
+}
+
+input[type="checkbox"] {
+    margin-right: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+label {
+    flex-grow: 1;
+    font-size: 16px;
+    color: #333; /* Warna teks pada mode terang */
+    transition: color 0.3s ease;
+}
+
+body.dark-mode label {
+    color: #ede2e2; /* Warna teks pada mode gelap */
+}
+
+button {
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #c0392b;
+}
+
+li:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: translateY(-4px);
+}
+
+input[type="checkbox"]:hover {
+    transform: scale(1.1);
+}
+
+label:hover {
+    color: #3498db;
+}
+
+/* Efek untuk tugas yang telah dicentang */
+li input[type="checkbox"]:checked ~ label {
+    color: #777;
+}
+
+body.dark-mode {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+}
+
+body.dark-mode h1 {
+    color: #3498db;
+}
+
+body.dark-mode li {
+    background-color: #34495e;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #ecf0f1; /* Warna teks di dalam box pada Dark Mode */
+}
+
+body.dark-mode li input[type="checkbox"]:checked ~ li {
+    background-color: #2c3e50;
+}
+
+#credits {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 12px;
+    color: #777;
+}
+
+#credits p {
+    margin: 0;
+}
+
+.task-datetime {
+    font-size: 12px;
+    color: #777;
+    margin-right: 10px;
+}
