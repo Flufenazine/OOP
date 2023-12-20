@@ -13,16 +13,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['addTask'])) {
         $taskText = $_POST['taskText'];
         $taskDateTime = $_POST['taskDateTime'];
-        $taskReminder = $_POST['taskReminder']; // Tambahkan input reminder
+        $taskReminder = $_POST['taskReminder'];
 
-        // Validasi tanggal dan waktu
         if (empty($taskDateTime)) {
             $taskDateTime = null;
         } else {
             $taskDateTime = date('Y-m-d H:i:s', strtotime($taskDateTime));
         }
 
-        $task = new TimedTask ($taskText, $taskDateTime, $taskReminder);
+        $task = new TimedTask($taskText, $taskDateTime, $taskReminder);
         $tasks[] = $task->toArray();
         file_put_contents('tasks.json', json_encode($tasks, JSON_PRETTY_PRINT));
     } elseif (isset($_POST['deleteTask'])) {
@@ -60,19 +59,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </form>
 
 <ul id="taskList">
-    <?php foreach ($tasks as $key => $task) : ?>
-        <li>
-            <input type="checkbox" id="task_<?php echo $key; ?>" data-task-id="<?php echo $key; ?>" <?php echo isset($task['completed']) && $task['completed'] ? 'checked' : ''; ?>>
-            <label for="task_<?php echo $key; ?>">
-                <?php echo $task['text']; ?>
-            </label>
-            <span class="task-datetime"><?php echo isset($task['datetime']) ? date('d/m/Y H:i', strtotime($task['datetime'])) : ''; ?></span>
-            <form method="post" style="display:inline;">
-                <input type="hidden" name="taskId" value="<?php echo $key; ?>">
-                <button type="submit" name="deleteTask">Delete</button>
-            </form>
-        </li>
-    <?php endforeach; ?>
+    <?php if (!empty($tasks)) : ?>
+        <?php foreach ($tasks as $key => $task) : ?>
+            <li>
+                <input type="checkbox" id="task_<?php echo $key; ?>" data-task-id="<?php echo $key; ?>" <?php echo isset($task['completed']) && $task['completed'] ? 'checked' : ''; ?>>
+                <label for="task_<?php echo $key; ?>">
+                    <?php echo $task['text']; ?>
+                </label>
+                <span class="task-datetime"><?php echo isset($task['datetime']) ? date('d/m/Y H:i', strtotime($task['datetime'])) : ''; ?></span>
+                <form method="post" style="display:inline;">
+                    <input type="hidden" name="taskId" value="<?php echo $key; ?>">
+                    <button type="submit" name="deleteTask">Delete</button>
+                </form>
+            </li>
+        <?php endforeach; ?>
+    <?php endif; ?>
 </ul>
 
 <div id="credits">
