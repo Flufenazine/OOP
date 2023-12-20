@@ -8,9 +8,9 @@ class TimedTask extends Task {
     // ini bagian construct
     public function __construct($text, $datetime = null, $reminder = null) {
         parent::__construct($text, $datetime);  // manggil konstruktor (chaining construct(anak manggil induk dii task)) kelas dri induk Task.php
-        $this->reminder = $reminder; 
-        
+        $this->reminder = $reminder;  
     } // ^^ yang diatas penambahan kelas anak
+
     public function getReminder() {
         return $this->reminder;
     } //ini penerapan getter
